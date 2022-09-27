@@ -5,12 +5,14 @@
 package aula.set15.controller;
 
 import aula.set15.entity.Produto;
+import aula.set15.entity.Venda;
 import aula.set15.repository.ProdutosRepository;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,10 +27,25 @@ public class ProdutosController {
     @Autowired
     ProdutosRepository repository;
     
+    
+    
     @GetMapping("/list")
     public ModelAndView list(ModelMap model){
+        
         model.addAttribute("produtos", repository.produtos());
-        return new ModelAndView("produtos/products", model);
+        return new ModelAndView("produtos/list", model);
+    }
+    
+    @GetMapping("/form")
+    public String form(Produto produto){
+        System.out.println("\n\naaaaaa");
+        return "produtos/form";
+    }
+    
+    @PostMapping("/save")
+    public ModelAndView save(Produto produto){
+        repository.save(produto);
+        return new ModelAndView("redirect:/produtos/list");
     }
     
     

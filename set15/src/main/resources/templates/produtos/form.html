@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>cadastro</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+       
+            <h1>Cadastrar produto</h1>
+            <form action="/produtos/save" th:object="${produto}" method="post">
+                <label>Descrição:</label>
+                <input class="form-control" type="text" th:field="*{descricao}"  placeholder="Descrição">
+                <label>Preço:</label>
+                <input class="form-control" type="text" th:field="*{valor}"  placeholder="Valor">
+                <br>
+                <input class="btn btn-success" type="submit" value="Cadastrar">
+            </form><br>
+            <a href="/" class="btn btn-outline-primary">Voltar</a>
+        </div>
+    </body>
+</html>

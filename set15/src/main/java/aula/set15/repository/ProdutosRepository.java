@@ -29,4 +29,8 @@ public class ProdutosRepository {
         return em.find(Produto.class, id);
     }
     
+    public void save(Produto produto){
+        em.persist(produto);
+    }
+    
 }

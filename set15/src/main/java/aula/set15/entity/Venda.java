@@ -4,6 +4,8 @@
  */
 package aula.set15.entity;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -14,23 +16,25 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
 
 /**
  * ${session.venda.lista}
  * @author Vinícius Moura
  */
-@Entity
-@Table(name="tb_venda")
+
 @Scope("session")
 @Component
-public class Venda {
+@Entity
+@Table(name="tb_venda")
+public class Venda implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
-    private Date data;
+    private Date data = new java.sql.Date(System.currentTimeMillis());
     
     @OneToMany(mappedBy="venda")
-    private List<ItemVenda> itens;
+    private List<ItemVenda> itens=new ArrayList();
     
     public double total(){
         //return itens.get(0).total();

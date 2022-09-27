@@ -72,4 +72,12 @@ public class ItemVenda {
         return produto.getValor() * this.qtd;
     }
     
+    public void addQtd(){
+        this.qtd++;
+    }
+    public void removeQtd(){
+        if(this.qtd!=1)
+            this.qtd--;
+    }
+    
 }

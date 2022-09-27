@@ -11,26 +11,29 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Vinícius Moura
  */
-
 @Repository
 public class VendasRepository {
     @PersistenceContext
     private EntityManager em;
     
     
+    
     public List<Venda> vendas(){
         Query query = em.createQuery("from Venda");
         return query.getResultList();
     }
-    
-    public void addProduct(ItemVenda itemVenda){
-        em.persist(itemVenda);
+    public void addItem(ItemVenda item){
+        em.persist(item);
+    }
+    public void addVenda(Venda venda){
+        em.persist(venda);
     }
     
     

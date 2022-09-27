@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Produtos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+
+            <nav class="navbar bg-light">
+                <a class="navbar-brand" href="#">
+                    <img src="https://cdn-icons-png.flaticon.com/512/25/25179.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                    Vendas
+                </a>
+   
+            </nav>
+            <a class="navbar-brand" href="/">
+                    Comprar produtos
+            </a>
+            <h2>Vendas</h2>
+            
+            
+           <div class="row border" th:each="venda: ${vendas}">
+               <div class="col-4 text-center">
+                   <h3>Venda N°<span th:text="${venda.id}"></span></h3>
+                   <h4>DATA: <span th:text="${venda.data}"></span></h4>
+               </div>
+               <div class="col-8 border">
+                   <h5>Produtos</h5>
+                   <table class="table">
+                       <thead>
+                        <tr>
+                            <th>Descricao</th>
+                            <th>Valor</th>
+                            <th>Qtd</th>
+                            <th>Total</th>
+                        </tr>
+                       </thead>
+                       <tbody>
+                           <tr th:each="itemvenda: ${venda.itens}">
+                               <td th:text="${itemvenda.produto.descricao}"></td>
+                               <td th:text="${itemvenda.produto.valor}"></td>
+                               <td th:text="${itemvenda.qtd}"></td>
+                               <td th:text="${itemvenda.total()}"></td>
+                           </tr>
+                       </tbody>
+                   </table>
+                   <h5>Total: R$ <span th:text="${venda.total()}"></span></h5>
+               </div>
+            </div>
+           
+           
+        </div>
+        
+      
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    </body>
+</html>

@@ -16,15 +16,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <nav class="navbar bg-light">
                 <a class="navbar-brand" href="#">
                     <img src="https://cdn-icons-png.flaticon.com/512/25/25179.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
-                    Produtos
+                    Produtos 
                 </a>
+   
                 <div class="d-flex">
                     <a href="/vendas/carrinho" class="btn btn-outline-success">
-                        Carrinho
+                        Carrinho <span th:text="(${session.venda==null} ? '' : '('+${session.venda.itens.size()}+')')"></span>
                     </a>
                 </div>
             </nav>
-            
+            <a class="navbar-brand" href="/produtos/form">
+                    Cadastrar produto
+            </a>
+            -
+            <a class="navbar-brand" href="/vendas/vendasrealiazadas">
+                    Listar vendas
+            </a>
             <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
                 
               
@@ -37,10 +44,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <form action="/vendas/addcart" method="post">
                         
                         <h2 th:text="${produto.descricao}"></h2>
-                        <p th:text="${produto.valor}"></p>
+                        <h4>R$ <span th:text="${produto.valor}"></span> </h4>
                         <label>Qtd:</label>
                         <input type="hidden" name="idprod" th:value="${produto.id}" />
-                        <input type="number" name="qtd" />
+                        <input type="number" name="qtd" required />
                         <input type="submit" class="btn btn-primary" value="Comprar"/>
                     </form>
                         
